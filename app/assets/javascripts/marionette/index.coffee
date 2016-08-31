@@ -17,13 +17,15 @@ SearchView = Marionette.ItemView.extend
     search = @ui.search.val()
     console.log search
     $.ajax "/search?search=#{search}",
-      success: (data, textStatus, jqXHR )->
-        console.log data
+      success: (data, textStatus, jqXHR)->
+        videoId = data.video_id
+        console.log videoId
+        video = new VideoView(el: $(".video"), model: new Backbone.Model(videoid: videoId))
+        video.render()
 
-
-
+VideoView = Marionette.ItemView.extend
+  template: "video"
 
 $ ->
-  console.log 'start'
-  view = new SearchView(el: $("body"), model: new Backbone.Model(world: "gil"))
-  view.render()
+  search = new SearchView(el: $(".start"), model: new Backbone.Model(world: "gil"))
+  search.render()
