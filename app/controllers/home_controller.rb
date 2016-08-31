@@ -3,6 +3,7 @@ class HomeController < ApplicationController
   end
 
   def search
+    render json: {message: params[:search]}
   end
 
   def influences
