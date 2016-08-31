@@ -6,7 +6,7 @@ Marionette.Renderer.render = (template_name, data)->
     throw new Error("Can't find template named #{template_name}")
 
 
-SearchView = Marionette.ItemView.extend
+SearchView = Marionette.View.extend
   template: "search"
   ui:
     "search": "input[type='text']"
@@ -23,7 +23,7 @@ SearchView = Marionette.ItemView.extend
         video = new VideoView(el: $(".video"), model: new Backbone.Model(videoid: videoId))
         video.render()
 
-VideoView = Marionette.ItemView.extend
+VideoView = Marionette.View.extend
   template: "video"
 
 $ ->

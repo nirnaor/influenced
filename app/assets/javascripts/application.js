@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require backbone-rails
+//= require backbone.radio
 //= require backbone.marionette
 //= require jquery_ujs
 //= require turbolinks
