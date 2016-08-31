@@ -20,12 +20,17 @@ SearchView = Marionette.View.extend
       success: (data, textStatus, jqXHR)->
         videoId = data.video_id
         console.log videoId
-        video = new VideoView(el: $(".video"), model: new Backbone.Model(videoid: videoId))
-        video.render()
+        Backbone.Radio.channel('main').trigger('videoidrecieved', videoId)
 
 VideoView = Marionette.View.extend
   template: "video"
 
 $ ->
+  channel = Backbone.Radio.channel('main')
+  channel.on 'videoidrecieved', (id)->
+    console.log("i have i video id#{id}")
+    video = new VideoView(el: $(".video"), model: new Backbone.Model(videoid: id))
+    video.render()
+
   search = new SearchView(el: $(".start"), model: new Backbone.Model(world: "gil"))
   search.render()
