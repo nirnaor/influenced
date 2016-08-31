@@ -15,5 +15,6 @@
 //= require backbone.marionette
 //= require jquery_ujs
 //= require turbolinks
-//= require test.jst.skim
-//= require_tree .
+
+//= require_tree ./marionette/templates
+//= require home
