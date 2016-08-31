@@ -17,4 +17,4 @@
 //= require turbolinks
 
 //= require_tree ./marionette/templates
-//= require home
+//= require ./marionette/index
