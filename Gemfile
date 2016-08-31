@@ -51,3 +51,4 @@ gem 'guard-livereload'
 
 gem 'backbone-rails'
 gem 'marionette-rails'
+gem 'skim'
