@@ -7,7 +7,7 @@ Marionette.Renderer.render = (template_name, data)->
 
 
 SearchView = Marionette.ItemView.extend
-  template: "test"
+  template: "search"
 
 $ ->
   console.log 'start'
