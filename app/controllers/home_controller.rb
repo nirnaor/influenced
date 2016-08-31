@@ -9,7 +9,7 @@ class HomeController < ApplicationController
   def search
     video_id = VideoProvider.new.search params[:search]
     influences = InfluencesProvider.new.search params[:search]
-    render json: { video_id: video_id, influences: influences}
+    render json: influences.merge(video_id: video_id)
   end
 
   def influences

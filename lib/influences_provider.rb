@@ -20,6 +20,11 @@ class InfluencesProvider
     agent.click first_result
 
     # Return array of influences
-    agent.page.links_with(dom_class: 'influence-link').map(&:text)
+    lists = agent.page.search('ul')
+    { influences: get_names(lists[2]), influenced_by: get_names(lists[3]) }
+  end
+
+  def get_names(list)
+    list.search('a').map(&:text)
   end
 end
