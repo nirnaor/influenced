@@ -11,6 +11,8 @@
 // about supported directives.
 //
 //= require jquery
+//= require backbone-rails
+//= require backbone.marionette
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .

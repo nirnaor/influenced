@@ -48,3 +48,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'guard'
 gem 'guard-livereload'
+
+gem 'backbone-rails'
+gem 'marionette-rails'
