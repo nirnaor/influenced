@@ -1,3 +1,2 @@
-h3 yo #{@world}!
 input type="text" placeholder="type musician" value="Metallica"
 input type="button" value="Start"
