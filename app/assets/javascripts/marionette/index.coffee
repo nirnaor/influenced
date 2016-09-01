@@ -17,14 +17,21 @@ SearchView = Marionette.View.extend
     search = @ui.search.val()
     Backbone.Radio.channel('main').trigger('artist_picked', search)
 
+LayoutView =  Marionette.View.extend
+  el: '.layout'
+  template: 'layout'
+  regions:
+    search: '.search'
+  onRender: ->
+    @showChildView('search', new SearchView())
 
 App = Marionette.Application.extend
   region: "#application"
   onStart: ->
     channel = Backbone.Radio.channel('main')
     @video = new VideoView(el: $(".video"))
-    search = new SearchView(el: $(".start"))
-    search.render()
+    layout = new LayoutView()
+    layout.render()
 
     channel.on 'artist_picked', (data)=>
       @search(data)
