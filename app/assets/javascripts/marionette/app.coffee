@@ -5,7 +5,7 @@ Marionette.Renderer.render = (template_name, data)->
   else
     throw new Error("Can't find template named #{template_name}")
 
-start = ->
+asyncLoadYouTubeAPI = ->
   # 2. This code loads the IFrame Player API code asynchronously.
   tag = document.createElement('script')
 
@@ -53,4 +53,4 @@ start = ->
 $ ->
   app = new App()
   app.start()
-  start()
+  asyncLoadYouTubeAPI()
