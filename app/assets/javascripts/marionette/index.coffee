@@ -18,8 +18,9 @@ SearchView = Marionette.View.extend
     Backbone.Radio.channel('main').trigger('artist_picked', search)
 
 
-class Manager
-  constructor: ->
+App = Marionette.Application.extend
+  region: "#application"
+  onStart: ->
     channel = Backbone.Radio.channel('main')
     @video = new VideoView(el: $(".video"))
     search = new SearchView(el: $(".start"))
@@ -41,4 +42,5 @@ class Manager
         @video.render(data.video_id)
 
 $ ->
-  manager = new Manager()
+  app = new App()
+  app.start()
