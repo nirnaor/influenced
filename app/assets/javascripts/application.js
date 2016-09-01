@@ -18,4 +18,5 @@
 //= require turbolinks
 
 //= require_tree ./marionette/templates
+//= require ./marionette/youtube
 //= require ./marionette/index

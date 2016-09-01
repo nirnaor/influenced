@@ -15,21 +15,30 @@ SearchView = Marionette.View.extend
     "click @ui.start": "startClick"
   startClick: ->
     search = @ui.search.val()
-    console.log search
-    $.ajax "/search?search=#{search}",
-      success: (data, textStatus, jqXHR)->
-        videoId = data.video_id
-        console.log videoId
-        Backbone.Radio.channel('main').trigger('videoidrecieved', videoId)
+    Backbone.Radio.channel('main').trigger('artist_picked', search)
 
-VideoView = Marionette.View.extend
-  template: "video"
+
+class Manager
+  constructor: ->
+    channel = Backbone.Radio.channel('main')
+    @video = new VideoView(el: $(".video"))
+    search = new SearchView(el: $(".start"))
+    search.render()
+
+    channel.on 'artist_picked', (data)=>
+      @search(data)
+
+    channel.on 'videoended', (data)=>
+      console.log 'video ended, randomally picking an ifluence...'
+      influence = _(@artistData.influences).sample()
+      console.log "influence picked: #{influence}"
+      @search(influence)
+
+  search: (artist)->
+    $.ajax "/search?search=#{artist}",
+      success: (data, textStatus, jqXHR)=>
+        @artistData = data
+        @video.render(data.video_id)
 
 $ ->
-  channel = Backbone.Radio.channel('main')
-  channel.on 'videoidrecieved', (id)->
-    video = new VideoView(el: $(".video"), model: new Backbone.Model(videoid: id))
-    video.render()
-
-  search = new SearchView(el: $(".start"))
-  search.render()
+  manager = new Manager()

@@ -1,2 +1,2 @@
 input type="text" placeholder="type musician" value="Metallica"
-input type="button" value="Start"
+input type="button" value="Start" autofocus="true"
