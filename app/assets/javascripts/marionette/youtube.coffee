@@ -1,6 +1,9 @@
 @VideoView = Marionette.View.extend
   template: "video"
-  render: (id)->
+  render: ->
+    id = @model.get('videoid')
+    console.log "Will now render video id: #{id}"
+
     if window.player?
       window.player.loadVideoById(videoId: id)
     else

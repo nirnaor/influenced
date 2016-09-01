@@ -32,9 +32,8 @@ start = ->
   region: "#application"
   onStart: ->
     channel = Backbone.Radio.channel('main')
-    @video = new VideoView(el: $(".video"))
-    layout = new LayoutView()
-    layout.render()
+    @layout = new LayoutView()
+    @layout.render()
 
     channel.on 'artist_picked', (data)=>
       @search(data)
@@ -49,7 +48,7 @@ start = ->
     $.ajax "/search?search=#{artist}",
       success: (data, textStatus, jqXHR)=>
         @artistData = data
-        @video.render(data.video_id)
+        @layout.showVideo(data.video_id)
 
 $ ->
   app = new App()
