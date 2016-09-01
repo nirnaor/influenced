@@ -11,5 +11,6 @@ class HomeController < ApplicationController
   end
 
   def influences
+    render json: ProductionDataProvider.new.influences(params[:query])
   end
 end
