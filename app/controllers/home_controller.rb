@@ -1,4 +1,5 @@
 require 'production_data_provider'
+require 'development_data_provider'
 
 # Single point of the API
 class HomeController < ApplicationController
@@ -6,7 +7,7 @@ class HomeController < ApplicationController
   end
 
   def search
-    render json: ProductionDataProvider.new.search(params[:search])
+    render json: DevelopmentDataProvider.new.search(params[:search])
   end
 
   def influences
