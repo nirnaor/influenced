@@ -6,7 +6,7 @@ class ProductionDataProvider
     VideoProvider.new.search query
   end
   def influences(query)
-    MTVInfluencesProvider.new.search query
+    MTVInfluencesProvider.new.influences query
   end
 
 

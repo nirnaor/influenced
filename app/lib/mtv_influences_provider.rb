@@ -2,7 +2,7 @@ require 'mechanize'
 
 # Scrapes musicbloddline to find influences of an artist.
 class MTVInfluencesProvider
-  def search(name)
+  def influences(name)
 
     # Get the JSON search response.
     url = "http://search.mtvnservices.com/typeahead/suggest/?spellcheck.count=5&spellcheck.q=kendr&q=#{name}&siteName=artist_platform&format=json&rows=50"
