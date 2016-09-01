@@ -16,10 +16,3 @@ SearchView = Marionette.View.extend
     search: '.search'
   onRender: ->
     @showChildView('search', new SearchView())
-
-
-  search: (artist)->
-    $.ajax "/search?search=#{artist}",
-      success: (data, textStatus, jqXHR)=>
-        @artistData = data
-        @video.render(data.video_id)
