@@ -7,7 +7,7 @@ SearchView = Marionette.View.extend
     "click @ui.start": "startClick"
   startClick: ->
     search = @ui.search.val()
-    Backbone.Radio.channel('main').trigger('artist_picked', search)
+    Backbone.Radio.channel('main').trigger('artist_searched', search)
 
 @LayoutView =  Marionette.View.extend
   el: '.layout'
