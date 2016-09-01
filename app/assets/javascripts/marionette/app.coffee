@@ -5,28 +5,6 @@ Marionette.Renderer.render = (template_name, data)->
   else
     throw new Error("Can't find template named #{template_name}")
 
-asyncLoadYouTubeAPI = ->
-  # 2. This code loads the IFrame Player API code asynchronously.
-  tag = document.createElement('script')
-
-  window.onYouTubeIframeAPIReady = ->
-    console.log 'api is ready'
-    $("input[type='button']").click()
-
-  # 4. The API will call this function when the video player is ready.
-
-
-
-  tag.src = 'https://www.youtube.com/iframe_api'
-  firstScriptTag = document.getElementsByTagName('script')[0]
-  firstScriptTag.parentNode.insertBefore tag, firstScriptTag
-  # 3. This function creates an <iframe> (and YouTube player)
-  #    after the API code downloads.
-  player = undefined
-  # 5. The API calls this function when the player's state changes.
-  #    The function indicates that when playing a video (state=1),
-  #    the player should play for six seconds and then stop.
-  done = false
 
 @App = Marionette.Application.extend
   region: "#application"
