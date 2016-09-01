@@ -1,5 +1,4 @@
-require 'video_provider'
-require 'influences_provider'
+require 'production_data_provider'
 
 # Single point of the API
 class HomeController < ApplicationController
@@ -7,9 +6,7 @@ class HomeController < ApplicationController
   end
 
   def search
-    video_id = VideoProvider.new.search params[:search]
-    influences = InfluencesProvider.new.search params[:search]
-    render json: influences.merge(video_id: video_id)
+    render json: ProductionDataProvider.new.search(params[:search])
   end
 
   def influences
