@@ -6,7 +6,7 @@ Marionette.Renderer.render = (template_name, data)->
     throw new Error("Can't find template named #{template_name}")
 
 Artist = Backbone.Model.extend
-  search: (callback)->
+  video: (callback)->
     query = @get('query')
     $.ajax "/video?query=#{query}",
       success: (data, textStatus, jqXHR)=>
@@ -23,7 +23,7 @@ Artist = Backbone.Model.extend
 
     channel.on 'artist_searched', (query)=>
       @artist = new Artist(query: query)
-      @artist.search => @layout.showVideo(@artist)
+      @artist.video => @layout.showVideo(@artist)
 
     channel.on 'videoended', => @videoEnded()
 
@@ -32,7 +32,7 @@ Artist = Backbone.Model.extend
     next = _(@artist.get("influenced_by")).sample()
     @artist = new Artist(query: next)
     console.log "influence picked: #{next}"
-    @artist.search => @layout.showVideo(@artist)
+    @artist.video => @layout.showVideo(@artist)
 
 
 
