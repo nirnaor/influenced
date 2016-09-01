@@ -8,7 +8,7 @@ Marionette.Renderer.render = (template_name, data)->
 Artist = Backbone.Model.extend
   search: (callback)->
     query = @get('query')
-    $.ajax "/search?search=#{query}",
+    $.ajax "/video?query=#{query}",
       success: (data, textStatus, jqXHR)=>
         console.log 'search finished'
         @set(data)

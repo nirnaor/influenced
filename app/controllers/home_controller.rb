@@ -6,8 +6,8 @@ class HomeController < ApplicationController
   def start
   end
 
-  def search
-    render json: DevelopmentDataProvider.new.search(params[:search])
+  def video
+    render json: ProductionDataProvider.new.search(params[:query])
   end
 
   def influences
