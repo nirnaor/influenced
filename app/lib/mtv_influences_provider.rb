@@ -18,6 +18,6 @@ class MTVInfluencesProvider
     agent = Mechanize.new
     agent.user_agent_alias = 'Mac Safari'
     agent.get(url)
-    { influenced_by: agent.page.search(".title").map {|el| el.inner_html.squish } }
+    { influences: agent.page.search(".title").map {|el| el.inner_html.squish } }
   end
 end
