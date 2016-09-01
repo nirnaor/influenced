@@ -19,4 +19,5 @@
 
 //= require_tree ./marionette/templates
 //= require ./marionette/youtube
-//= require ./marionette/index
+//= require ./marionette/views
+//= require ./marionette/app
