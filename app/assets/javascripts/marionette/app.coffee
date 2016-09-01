@@ -12,22 +12,19 @@ Artist = Backbone.Model.extend
     @set('name', splitted[0])
     @set('song', splitted[1])
 
-  video: (callback)->
-    query = @get('query')
-    $.ajax "/video?query=#{query}",
+  fetch: (route, query, callback)->
+    $.ajax "/#{route}?query=#{query}",
       success: (data, textStatus, jqXHR)=>
-        console.log 'search finished'
         @set(data)
-        @calculateNames()
-        callback(@)
+        callback()
+
+  video: (callback)->
+    @fetch('video', @get('query'), =>
+      @calculateNames()
+      callback())
 
   influences: (callback)->
-    query = @get('name')
-    $.ajax "/influences?query=#{query}",
-      success: (data, textStatus, jqXHR)=>
-        console.log 'influences search finished'
-        @set(data)
-        callback(@)
+    @fetch("influences", @get('name'), callback)
 
 @App = Marionette.Application.extend
   region: "#application"
