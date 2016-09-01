@@ -17,6 +17,5 @@ SearchView = Marionette.View.extend
     video: '.video'
   onRender: ->
     @showChildView('search', new SearchView())
-  showVideo: (id)->
-    model = new Backbone.Model(videoid: id)
-    @showChildView('video', new VideoView(model: model))
+  showVideo: (artist)->
+    @showChildView('video', new VideoView(model: artist))
