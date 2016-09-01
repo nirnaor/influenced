@@ -25,6 +25,7 @@ class InfluencesProvider
   end
 
   def get_names(list)
+    return [] if list.nil?
     list.search('a').map(&:text)
   end
 end
