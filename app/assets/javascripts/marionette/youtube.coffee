@@ -10,6 +10,7 @@ stopVideo = ->
 
 onPlayerStateChange = (event) ->
   console.log 'player state changed'
+  window.player.pauseVideo()
   if event.data == YT.PlayerState.ENDED
     Backbone.Radio.channel('main').trigger('videoended')
 
@@ -38,6 +39,7 @@ onPlayerStateChange = (event) ->
 
     window.onYouTubeIframeAPIReady = ->
       console.log 'api is ready'
+      $("input[type='button']").click()
 
     # 4. The API will call this function when the video player is ready.
 
