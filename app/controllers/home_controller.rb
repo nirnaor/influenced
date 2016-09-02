@@ -10,9 +10,4 @@ class HomeController < ApplicationController
   def influences
     render json: ProductionDataProvider.new.influences(params[:query])
   end
-
-
-  def followers
-    render json: ProductionDataProvider.new.followers(params[:query])
-  end
 end

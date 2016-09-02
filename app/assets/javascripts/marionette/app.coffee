@@ -42,10 +42,16 @@ Artist = Backbone.Model.extend
   videoEnded: ->
     console.log 'video ended, fetching influences...'
     @artist.influences =>
-      next = _(@artist.get("influences")).sample()
-      @artist = new Artist(query: next)
-      console.log "influence picked: #{next}"
-      @artist.video => @layout.showVideo(@artist)
+      related = @artist.get("influences")
+      if related.length == 0
+        related = @artist.get("followers")
+      @next(related)
+
+  next: (related)->
+    next = _(related).sample()
+    @artist = new Artist(query: next)
+    console.log "influence picked: #{next}"
+    @artist.video => @layout.showVideo(@artist)
 
 
 

@@ -2,12 +2,8 @@ require 'mechanize'
 
 # Scrapes musicbloddline to find influences of an artist.
 class MTVInfluencesProvider
-  def followers(name)
-    related(name, "followers")
-  end
-
   def influences(name)
-    related(name, "influencedBy")
+    {influences: related(name, "influencedBy") }.merge({followers: related(name, "followers")})
   end
 
   def related(name, filter)
@@ -26,6 +22,6 @@ class MTVInfluencesProvider
     agent = Mechanize.new
     agent.user_agent_alias = 'Mac Safari'
     agent.get(url)
-    { influences: agent.page.search(".title").map {|el| el.inner_html.squish } }
+    agent.page.search(".title").map {|el| el.inner_html.squish }
   end
 end
