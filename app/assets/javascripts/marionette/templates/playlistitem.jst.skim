@@ -1,2 +1,2 @@
-span #{@name}
+header #{@name}
 img src="#{@image}"
