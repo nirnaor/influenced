@@ -1,5 +1,3 @@
-require 'mechanize'
-
 # Scrapes musicbloddline to find influences of an artist.
 class InfluencesProvider
   def search(name)
