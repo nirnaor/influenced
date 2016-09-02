@@ -15,6 +15,7 @@
 //= require backbone.radio
 //= require backbone.marionette
 //= require jquery_ujs
+//= require materialize-sprockets
 //= require turbolinks
 
 //= require_tree ./marionette/templates

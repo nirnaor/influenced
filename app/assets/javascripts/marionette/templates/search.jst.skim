@@ -1,2 +1,9 @@
-input type="text" placeholder="type musician" value="Metallica"
-input type="button" value="Start" autofocus="true"
+.row
+  form.col.s12
+    .row
+      .input-field.col.s12
+        textarea#textarea1.materialize-textarea Metallica
+        label for="textarea1"  Type a musician
+    .row
+      .input-field.col.s12
+        button.btn.waves-effect.waves-light type='button' Submit 

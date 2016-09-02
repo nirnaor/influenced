@@ -1,8 +1,8 @@
 SearchView = Marionette.View.extend
   template: "search"
   ui:
-    "search": "input[type='text']"
-    "start": "input[type='button']"
+    "search": "textarea"
+    "start": "button"
   events:
     "click @ui.start": "startClick"
   startClick: ->
