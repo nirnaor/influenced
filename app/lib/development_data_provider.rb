@@ -1,5 +1,5 @@
 class DevelopmentDataProvider 
-  def search(query)
+  def video(query)
    JSON.parse(File.read(Dir.glob("test/jsons/*").sample))
   end
 end
