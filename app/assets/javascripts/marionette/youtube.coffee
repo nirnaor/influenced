@@ -32,7 +32,7 @@
     else
       window.player = new (YT.Player)('ytplayer',
         height: '390'
-        width: '640'
+        width: '440'
         videoId: id
         events:
           'onReady': @onPlayerReady
