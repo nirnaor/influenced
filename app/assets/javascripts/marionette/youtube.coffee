@@ -30,7 +30,8 @@
     if window.player?
       window.player.loadVideoById(videoId: id)
     else
-      window.player = new (YT.Player)('ytplayer',
+      video_element = document.querySelector('.video_container .video')
+      window.player = new (YT.Player)(video_element,
         height: '390'
         width: '440'
         videoId: id

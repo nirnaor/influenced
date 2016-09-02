@@ -1,6 +1,6 @@
 .row
-  .search.col.s8
-  .video.col.s4
   .playlist.col.s2
+  .search.col.s2
 .row
-  #ytplayer
+  .video_container.s8
+    .video
