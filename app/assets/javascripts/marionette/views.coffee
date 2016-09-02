@@ -29,6 +29,7 @@ PlaylistView = Marionette.CollectionView.extend
   onRender: ->
     @showChildView('search', new SearchView())
     @showChildView('playlist', new PlaylistView(collection: @artists))
+    asyncLoadYouTubeAPI()
   showVideo: (artist)->
     @artists.add artist
     @showChildView('video', new VideoView(model: artist))

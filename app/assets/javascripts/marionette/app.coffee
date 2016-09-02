@@ -39,4 +39,3 @@ Marionette.Renderer.render = (template_name, data)->
 $ ->
   app = new App()
   app.start()
-  asyncLoadYouTubeAPI()
