@@ -1,6 +1,6 @@
 .row
-  .playlist.col.s2
-  .search.col.s2
-.row
-  .video_container.s8
-    .video
+  .playlist.col.s3
+  .main.col.s9
+    .search
+    .video_container
+      .video
