@@ -1,2 +1,2 @@
 header #{@name}
-img src="#{@image}"
+img src="#{@image}" class='circle'
