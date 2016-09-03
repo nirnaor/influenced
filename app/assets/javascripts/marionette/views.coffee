@@ -23,22 +23,22 @@ GraphView = Marionette.View.extend
     'canvas' : '.canvas'
   add_influence: (artist, influence)->
     console.log "Will add for #{artist} influence #{influence}"
+    @g.addEdge(artist, influence)
+
+  redraw_graph: ->
+    layouter = new Dracula.Layout.Spring(@g)
+    renderer = new Dracula.Renderer.Raphael('#canvas', @g)
+    renderer.draw()
+
   onRender: ->
+    @g = new Dracula.Graph
     Backbone.Radio.channel('main').on 'influences_found', (artist) =>
       name = artist.get('name')
       artist.get('influences').forEach (influence) =>
         @add_influence(name, influence)
-    g = new Dracula.Graph
+      @redraw_graph()
+     
 
-    g.addEdge('Banana', 'Tomato')
-    g.addEdge('Mushroom', 'Tomato')
-    g.addEdge('nir', 'Tomato')
-    g.addEdge('nir', 'Mushroom')
-    g.addEdge('Banana', 'Mushroom')
-
-    layouter = new Dracula.Layout.Spring(g)
-    renderer = new Dracula.Renderer.Raphael('#canvas', g)
-    renderer.draw()
 
 @LayoutView =  Marionette.View.extend
   initialize: ->
