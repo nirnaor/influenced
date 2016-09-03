@@ -21,27 +21,40 @@ GraphView = Marionette.View.extend
   template: 'graph'
   ui:
     'canvas' : '.canvas'
-  add_influence: (artist, influence)->
-    console.log "Will add for #{artist} influence #{influence}"
-    @g.addEdge(artist, influence)
 
-  redraw_graph: ->
-    layouter = new Dracula.Layout.Spring(@g)
-    renderer = new Dracula.Renderer.Raphael('#canvas', @g)
-    renderer.draw()
+  add_node: (n) ->
+    return if @nodes._data[n]?
+    @nodes.add(id: n, label: n)
+
+  edge_exists: (from, to)->
+    for key of @edges._data
+      edge = @edges._data[key]
+      return true if edge.from == from and edge.to == to
+    return false
+
+
+  add_influence: (artist, influence)->
+    console.log "Will not add artist #{artist} with influence #{influence}"
+    [artist, influence].forEach (n) => @add_node(n)
+    return if @edge_exists(artist, influence)
+    @edges.add({from: artist, to: influence})
+
+  onAttach: ->
+    @nodes = new vis.DataSet([])
+    @edges = new vis.DataSet([])
+    container = document.querySelector('.graph_container')
+    data = {nodes: @nodes, edges: @edges}
+    options = {}
+    @network = new vis.Network(container, data, options)
 
   onRender: ->
-    @g = new Dracula.Graph
-    @artists = new Set()
     Backbone.Radio.channel('main').on 'influences_found', (artist) =>
-      name = artist.get('name')
-      return if @artists.has name
-      @artists.add name
-
+      name = artist.get 'name'
       artist.get('influences').forEach (influence) =>
         @add_influence(name, influence)
-      @redraw_graph()
-     
+
+
+
 
 
 @LayoutView =  Marionette.View.extend
