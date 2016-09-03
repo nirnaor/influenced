@@ -22,9 +22,9 @@ GraphView = Marionette.View.extend
   ui:
     'canvas' : '.canvas'
 
-  add_node: (n) ->
+  add_node: (n, color) ->
     return if @nodes._data[n]?
-    @nodes.add(id: n, label: n)
+    @nodes.add(id: n, label: n, color: color)
 
   edge_exists: (from, to)->
     for key of @edges._data
@@ -34,8 +34,8 @@ GraphView = Marionette.View.extend
 
 
   add_influence: (artist, influence)->
-    console.log "Will not add artist #{artist} with influence #{influence}"
-    [artist, influence].forEach (n) => @add_node(n)
+    @add_node(artist, '#0e5961')
+    @add_node(influence, '#0ec3d6')
     return if @edge_exists(artist, influence)
     @edges.add({from: artist, to: influence})
 

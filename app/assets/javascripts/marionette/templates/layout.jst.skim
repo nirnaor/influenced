@@ -4,5 +4,4 @@
     .search
     .video_container
       .video
-.row
-  .graph
+    .graph
