@@ -17,6 +17,23 @@ PlaylistItemView = Marionette.View.extend
 PlaylistView = Marionette.CollectionView.extend
   childView: PlaylistItemView
 
+GraphView = Marionette.View.extend
+  template: 'graph'
+  ui:
+    'canvas' : '.canvas'
+  onRender: ->
+    g = new Dracula.Graph
+
+    g.addEdge('Banana', 'Tomato')
+    g.addEdge('Mushroom', 'Tomato')
+    g.addEdge('nir', 'Tomato')
+    g.addEdge('nir', 'Mushroom')
+    g.addEdge('Banana', 'Mushroom')
+
+    layouter = new Dracula.Layout.Spring(g)
+    renderer = new Dracula.Renderer.Raphael('#canvas', g)
+    renderer.draw()
+
 @LayoutView =  Marionette.View.extend
   initialize: ->
     @artists = new Backbone.Collection()
@@ -26,9 +43,11 @@ PlaylistView = Marionette.CollectionView.extend
     search: '.search'
     video: '.video'
     playlist: '.playlist'
+    graph: '.graph'
   onRender: ->
     @showChildView('search', new SearchView())
     @showChildView('playlist', new PlaylistView(collection: @artists))
+    @showChildView('graph', new GraphView())
     asyncLoadYouTubeAPI()
   showVideo: (artist)->
     @artists.add artist

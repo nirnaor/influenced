@@ -14,6 +14,8 @@
 //= require backbone-rails
 //= require backbone.radio
 //= require backbone.marionette
+//= require raphael
+//= require dracula.dev
 //= require jquery_ujs
 //= require materialize-sprockets
 //= require turbolinks
