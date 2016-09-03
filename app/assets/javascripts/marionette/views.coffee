@@ -32,8 +32,12 @@ GraphView = Marionette.View.extend
 
   onRender: ->
     @g = new Dracula.Graph
+    @artists = new Set()
     Backbone.Radio.channel('main').on 'influences_found', (artist) =>
       name = artist.get('name')
+      return if @artists.has name
+      @artists.add name
+
       artist.get('influences').forEach (influence) =>
         @add_influence(name, influence)
       @redraw_graph()
