@@ -23,6 +23,7 @@ Marionette.Renderer.render = (template_name, data)->
     console.log 'video ended, fetching influences...'
     @artist.influences =>
       related = @artist.get("influences")
+      Backbone.Radio.channel('main').trigger('influences_found', @artist)
       if related.length == 0
         related = @artist.get("followers")
       @next(related)

@@ -21,7 +21,13 @@ GraphView = Marionette.View.extend
   template: 'graph'
   ui:
     'canvas' : '.canvas'
+  add_influence: (artist, influence)->
+    console.log "Will add for #{artist} influence #{influence}"
   onRender: ->
+    Backbone.Radio.channel('main').on 'influences_found', (artist) =>
+      name = artist.get('name')
+      artist.get('influences').forEach (influence) =>
+        @add_influence(name, influence)
     g = new Dracula.Graph
 
     g.addEdge('Banana', 'Tomato')
