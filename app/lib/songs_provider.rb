@@ -2,7 +2,8 @@
 class SongsProvider
   def search(name)
     # Get Id.
-    url = "https://api.spotify.com/v1/search?q=#{name}&type=artist"
+    search_url = "https://api.spotify.com/v1/search?q=#{name}&type=artist"
+    url = Addressable::URI.parse(search_url).normalize.to_s
     res = HTTParty.get(url).parsed_response
 
     artist_data = res["artists"]["items"].first
