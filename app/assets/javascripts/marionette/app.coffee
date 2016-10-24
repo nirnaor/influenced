@@ -14,29 +14,30 @@ Marionette.Renderer.render = (template_name, data)->
     @layout.render()
 
     channel.on 'artist_searched', (query)=>
-      @artist = new Artist(query: query)
-      @artist.video => @layout.showVideo(@artist)
+      @playArtist(query)
 
-    channel.on 'videoended', => @videoEnded()
+    channel.on 'videoended', => @next()
 
-  videoEnded: ->
-    console.log 'video ended, fetching influences...'
+  onVideoFound: ->
+    @layout.showVideo(@artist)
     @artist.influences =>
       related = @artist.get("influences")
       Backbone.Radio.channel('main').trigger('influences_found', @artist)
       if related.length == 0
         related = @artist.get("followers")
-      @next(related)
 
-  next: (related)->
-    next = _(related).sample()
-    @artist = new Artist(query: next)
-    console.log "influence picked: #{next}"
-    @artist.video => @layout.showVideo(@artist)
+
+  next: ->
+    influence = _.sample(@artist.get("influences"))
+    @playArtist(influence)
+
+  playArtist: (name)->
+    @artist = new Artist(query: name)
+    @artist.video => @onVideoFound()
 
 
 
 
 $ ->
-  app = new App()
-  app.start()
+  window.app = new App()
+  window.app.start()
