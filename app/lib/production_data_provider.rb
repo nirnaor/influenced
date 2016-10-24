@@ -3,6 +3,6 @@ class ProductionDataProvider
     VideoProvider.new.search query
   end
   def influences(query)
-    MTVInfluencesProvider.new.influences query
+    AllmusicInfluencesProvider.new.influences query
   end
 end
